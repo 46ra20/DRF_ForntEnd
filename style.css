@@ -1,0 +1,19 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.cardDegin{
+    transition-duration: 500ms;
+    height: 500px;
+}
+.cardDegin img{
+    height: 200px;
+    width: 100%;
+}
+.cardDegin:hover{
+    transform: scale(1.01);
+    transition-duration: 500ms;
+    box-shadow: 0px 0px 4px 4px rgb(168, 167, 167);
+    /* margin-bottom: 50px; */
+    /* transition-duration: 500ms; */
+}
