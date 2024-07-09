@@ -111,13 +111,13 @@ const footerLoader=()=>{
 
 
 const getUserDetails=(id)=>{
-  fetch(`https://online-school-lr66.onrender.com/account/user_details/${id}/`)
-  .then(r=>r.json())
-  .then(d=>{
-    // console.log(d)
-    localStorage.setItem('user',JSON.stringify(d))
-  })
-  .catch(error=>console.log(error))
+    fetch(`https://online-school-lr66.onrender.com/account/user_details/${id}/`)
+    .then(r=>r.json())
+    .then(d=>{
+      // console.log(d)
+      localStorage.setItem('user',JSON.stringify(d))
+    })
+    .catch(error=>console.log(error))
 }
 
 

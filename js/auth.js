@@ -3,22 +3,26 @@ const handleLogin = (e)=>{
     const username = get_value('username')
     const password=get_value('password')
     
-    fetch("https://online-school-lr66.onrender.com/account/login/",{
-        method:'POST',
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body:JSON.stringify({'username':username,'password':password})
-    })
-    .then(r=>r.json())
-    .then(data=>{
-        localStorage.setItem('token',data['token'])
-        localStorage.setItem('user_id',data['user_id'])
-        getUserDetails(data['user_id'])
-        
-        window.location.href='index.html'
-    })
-    .catch(error=>console.log(error))
+        fetch("https://online-school-lr66.onrender.com/account/login/",{
+            method:'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body:JSON.stringify({'username':username,'password':password})
+        })
+        .then(r=>r.json())
+        .then(data=>{
+            console.log(data)
+            if(data?.error){
+                message_shoe(data?.error,'bg-danger')
+            }
+            getUserDetails(data['user_id'])
+            localStorage.setItem('token',data['token'])
+            localStorage.setItem('user_id',data['user_id'])
+            window.location.href='index.html'
+
+        })
+        .catch(error=>message_shoe(error,'bg-danger'))
 }
 
 
@@ -69,10 +73,22 @@ const handleRegistration=(e)=>{
     .then(r=>r.json())
     .then(d=>{
         if(d=='Done'){
-            window.location.href='index.html'
+            
+            const message='Please varify your email...'
+            message_shoe(message,'bg-white')
+        }
+        else if(d=='Sorry'){
+            const message ='Something wrong please try agin..'
+            message_shoe(message,'bg-danger')
+
+        }
+        else{
+            message_shoe(d.error,'bg-danger')
         }
     })
-    .catch(error=>console.log(error))
+    .catch(error=>{
+        message_shoe(error.message,'bg-danger')
+    })
 }
 
 
@@ -81,4 +97,11 @@ const handleRegistration=(e)=>{
 const get_value=(id)=>{
     const input = document.getElementById(id)
     return input.value
+}
+
+const message_shoe=(message,type)=>{
+    const message_container = document.getElementById('message_container')
+    message_container.classList.add("text-center","border","p-2","rounded",type,"d-block")
+    message_container.innerText=message
+    console.log('from inner function')
 }
