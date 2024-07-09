@@ -13,6 +13,13 @@ const depList = ['CSE','EEE','Civil','Mechanical','Automobile']
 const viewCourses=(courses)=>{
     const parent = document.getElementById('load_courses')
     parent.innerHTML=''
+    if(courses.length==0){
+        parent.innerHTML=`
+            <div class="d-flex justify-content-center text-center mx-auto">
+                <img src="image/nodata.png" />
+            </div>
+        `
+    }
     courses.forEach(course => {
         const div = document.createElement('div')
         div.classList.add('col-sm-11', 'col-md-4', 'col-lg-3')
