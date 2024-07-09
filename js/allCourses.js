@@ -44,4 +44,27 @@ const viewCourses=(courses)=>{
     });
 }
 
+const CategoryView = ()=>{
+    fetch('http://127.0.0.1:8000/course/category/')
+    .then(r=>r.json())
+    .then(d=>{
+        console.log(d)
+        const category_container = document.getElementById('category_container')
+        d.forEach(element => {
+            const li = document.createElement('li')
+            li.classList.add('dropdown-item')
+            li.style=('cursor:pointer;')
+            li.onclick=()=>{handleFilter(element.id)}
+            li.innerText=`${element.category}`
+            category_container.append(li)
+        });
+    })
+    .catch(err=>console.log(err))
+}
+const handleFilter=(id)=>{
+    console.log(id)
+
+}
+
+CategoryView()
 AllloadCourses()
