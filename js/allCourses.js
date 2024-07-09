@@ -17,6 +17,7 @@ const viewCourses=(courses)=>{
         parent.innerHTML=`
             <div class="d-flex justify-content-center text-center mx-auto">
                 <img src="image/nodata.png" />
+                <h2 class="text-white fw-bold" style="box-shadow:0px 0px 2px 2px solid black;">Opps!!!<br/>No data found with this category</h2>
             </div>
         `
     }
