@@ -40,6 +40,7 @@ const handleAddpost=(e)=>{
     .then(r=>r.json())
     .then(d=>{
         console.log(d)
+        window.location.href='mycorse.html'
     })
     .catch(error=>console.log(error))
     
