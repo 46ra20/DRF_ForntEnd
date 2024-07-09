@@ -17,8 +17,10 @@ const handleLogin = (e)=>{
                 message_shoe(data?.error,'bg-danger')
             }
             getUserDetails(data['user_id'])
+            // window.location.reload()
             localStorage.setItem('token',data['token'])
             localStorage.setItem('user_id',data['user_id'])
+            setTimeout(5000)
             window.location.href='index.html'
 
         })

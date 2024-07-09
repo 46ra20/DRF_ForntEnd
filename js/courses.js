@@ -40,7 +40,7 @@ const viewCourses=(courses)=>{
                 <p>Price: ${course?.price}$</p>
                 <p>Course Duration: ${course?.course_duration}</p>
                 <p>Department: ${depList[course?.department-1]}</p>
-                <button class="btn btn-warning shadow">Details</button>
+                <a class="btn btn-warning shadow" href="detailsView.html?id=${course?.id}">Details</a>
             </div>
         </div>
         `

@@ -137,5 +137,7 @@ const handleLogout = ()=>{
 
 }
 
+// window.location.reload()
+
 footerLoader()
 navBar()
