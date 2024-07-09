@@ -10,7 +10,8 @@ const loadCourses = () =>{
 }
 
 
-const depList = ['Automobile','Mechanical','Civil','CSE','EEE']
+const depList = ['CSE','EEE','Civil','Mechanical','Automobile']
+
 
 
 const viewCourses=(courses)=>{

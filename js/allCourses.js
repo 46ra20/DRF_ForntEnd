@@ -1,5 +1,5 @@
 const AllloadCourses = () =>{
-    fetch('http://127.0.0.1:8000/course/public/all/all/')
+    fetch('https://online-school-lr66.onrender.com/course/public/all/all/')
     .then(r=>r.json())
     .then(data=>{
         console.log(data)
@@ -8,10 +8,11 @@ const AllloadCourses = () =>{
     .catch(err=>console.log(err))
 }
 
-const depList = ['Automobile','Mechanical','Civil','CSE','EEE']
+const depList = ['CSE','EEE','Civil','Mechanical','Automobile']
 
 const viewCourses=(courses)=>{
     const parent = document.getElementById('load_courses')
+    parent.innerHTML=''
     courses.forEach(course => {
         const div = document.createElement('div')
         div.classList.add('col-sm-11', 'col-md-4', 'col-lg-3')
@@ -45,7 +46,7 @@ const viewCourses=(courses)=>{
 }
 
 const CategoryView = ()=>{
-    fetch('http://127.0.0.1:8000/course/category/')
+    fetch('https://online-school-lr66.onrender.com/course/category/')
     .then(r=>r.json())
     .then(d=>{
         console.log(d)
@@ -62,7 +63,12 @@ const CategoryView = ()=>{
     .catch(err=>console.log(err))
 }
 const handleFilter=(id)=>{
-    console.log(id)
+    fetch(`https://online-school-lr66.onrender.com/course/get_by_dep/${id}/`)
+    .then(r=>r.json())
+    .then(d=>{
+        viewCourses(d)
+    })
+    .catch(err=>console.log(err))
 
 }
 

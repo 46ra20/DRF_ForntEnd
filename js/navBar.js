@@ -77,6 +77,39 @@ const navBar =()=>{
     `
 }
 
+const footerLoader=()=>{
+  const footer_continer = document.getElementById('footer_continer')
+  footer_continer.innerHTML=`
+  <div class="justify-content-around align-items-center flex-sm-column flex-lg-row d-lg-flex">
+      <p class="fw-bold text-white">
+        All right reserved by JSRN School
+      </p>
+      <div class="">
+        <p class="fw-bold text-white">Our Service</p>
+        <ul class="text-white">
+          <li><a class="text-white" href="">Option 1</a> </li>
+          <li><a class="text-white" href="">Option 2</a> </li>
+          <li><a class="text-white" href="">Option 3</a> </li>
+          <li><a class="text-white" href="">Option 4</a> </li>
+          <li><a class="text-white" href="">Option 5</a> </li>
+        </ul>
+      </div>
+      <div class="">
+        <p class="fw-bold text-white">Our Service</p>
+        <ul class="text-white">
+          <li><a class="text-white" href="">Option 1</a> </li>
+          <li><a class="text-white" href="">Option 2</a> </li>
+          <li><a class="text-white" href="">Option 3</a> </li>
+          <li><a class="text-white" href="">Option 4</a> </li>
+          <li><a class="text-white" href="">Option 5</a> </li>
+        </ul>
+      </div>
+    </div>
+  `
+}
+
+
+
 const getUserDetails=(id)=>{
   fetch(`https://online-school-lr66.onrender.com/account/user_details/${id}/`)
   .then(r=>r.json())
@@ -103,4 +136,6 @@ const handleLogout = ()=>{
   .catch(err=>console.log(err))
 
 }
+
+footerLoader()
 navBar()
