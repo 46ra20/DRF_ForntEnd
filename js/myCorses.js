@@ -1,6 +1,6 @@
 const loadMyCourse = () => {
     const user = localStorage.getItem('user_id')
-    fetch(`http://127.0.0.1:8000/course/authentic/${user}/`)
+    fetch(`https://online-school-lr66.onrender.com/course/authentic/${user}/`)
         .then(r => r.json())
         .then(d => {
             displayMyCourses(d)
@@ -47,7 +47,7 @@ const hangleDelete=(id)=>{
 const hangleEdit=(id)=>{
     const user = localStorage.getItem('user_id')
     const modal_container = document.getElementById('modal_container')
-    fetch(`http://127.0.0.1:8000/course/details/${user}/${id}/`)
+    fetch(`https://online-school-lr66.onrender.com/course/details/${user}/${id}/`)
     .then(r=>r.json())
     .then(d=>{
         modal_container.innerHTML=
@@ -209,7 +209,7 @@ const UpdatePost=(e,id)=>{
     // console.log(typeof(context))
     
 
-    fetch(`http://127.0.0.1:8000/course/details/${user}/${id}/`,{
+    fetch(`https://online-school-lr66.onrender.com/course/details/${user}/${id}/`,{
         method:'PATCH',
         headers:{
             "Content-Type": "application/json"
