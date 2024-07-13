@@ -107,3 +107,20 @@ const message_shoe=(message,type)=>{
     message_container.innerText=message
     console.log('from inner function')
 }
+
+
+let type = true;
+const handlePasswordShow = () =>{
+    const pass = document.getElementById('password');
+    const eye = document.getElementById('eye_show');
+    type=!type;
+    
+    if(type){
+        pass.type='password';
+        eye.src='image/eye-fill.svg';
+    }
+    else{
+        pass.type='text';
+        eye.src='image/eye-slash-fill.svg';
+    }
+}

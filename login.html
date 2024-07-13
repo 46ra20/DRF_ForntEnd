@@ -31,14 +31,22 @@
 
         <div class="mb-3">
             <label for="" class="form-label">Password</label>
-            <input
+            <!-- <div class="d-flex border rounded">
+              <input
                 type="password"
                 class="form-control"
+                style="border: none !important;"
                 name=""
                 id="password"
                 aria-describedby="helpId"
                 placeholder="######"
             />
+            
+            </div> -->
+            <div class="input-group mb-3">
+              <input type="password" class="form-control" placeholder="******" aria-label="password" aria-describedby="basic-addon2" id="password">
+              <span class="input-group-text" id="basic-addon2" onclick="handlePasswordShow()" style="cursor: pointer;"><img src="image/eye-fill.svg" id="eye_show" alt=""></span>
+            </div>
         </div>
         <small class="my-1">Don't have a account? Please <a href="singup.html">register</a></small>
         <button class="btn btn-warning text-white fw-bold  d-block w-100" onclick="handleLogin(event)">

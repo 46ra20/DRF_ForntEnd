@@ -206,7 +206,7 @@ const UpdatePost=(e,id)=>{
     if(select_department!=0){
         context['department']=select_department
     }
-    // console.log(typeof(context))
+    console.log(context)
     
 
     fetch(`https://online-school-lr66.onrender.com/course/details/${user}/${id}/`,{

@@ -30,17 +30,22 @@ const handleAddpost=(e)=>{
     formatData.append('title',title)
     formatData.append('user',user)
     
+    for(const v of formatData.values()){
+        console.log(v)
+    }
 
-    console.log(formatData)
-
-    fetch(`https://online-school-lr66.onrender.com/course/authentic/${user}/`,{
+    fetch(`http://127.0.0.1:8000/course/authentic/${user}/`,{
         method:'POST',
+        // headers:{
+        //     "Content-Type": "multipart/form-data"
+        // },
+        // body:JSON.stringify(context)
         body:formatData
     })
     .then(r=>r.json())
     .then(d=>{
         console.log(d)
-        window.location.href='mycorse.html'
+        // window.location.href='mycorse.html'
     })
     .catch(error=>console.log(error))
     

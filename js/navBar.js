@@ -20,7 +20,7 @@ const navBar =()=>{
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active text-white" aria-current="index.html" href="index.html">Home</a>
+              <a class="nav-link active text-white" aria-current="index.html?reload=0" href="index.html">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active text-white" aria-current="allcourses.html" href="allcourses.html">All Courses</a>
@@ -137,7 +137,18 @@ const handleLogout = ()=>{
 
 }
 
-// window.location.reload()
+const handelLoadedData = ()=>{
+  const param = new URLSearchParams(window.location.search).get('reload');
+  if(param==0){
+    window.location.href='index.html?reload=1';
+    window.location.reload();
+  }
+
+  // window.alert('Reload agin....');
+}
+
+handelLoadedData()
+
 
 footerLoader()
 navBar()
