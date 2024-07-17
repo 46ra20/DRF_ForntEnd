@@ -1,5 +1,5 @@
 const AllloadCourses = () =>{
-    fetch('https://online-school-lr66.onrender.com/course/public/all/all/')
+    fetch('http://127.0.0.1:8000/course/public_all/all/')
     .then(r=>r.json())
     .then(data=>{
         viewCourses(data)
