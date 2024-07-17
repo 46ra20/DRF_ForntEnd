@@ -17,3 +17,36 @@
     /* margin-bottom: 50px; */
     /* transition-duration: 500ms; */
 }
+
+.img_background{
+    /* background: radial-gradient(white,yellow); */
+    background: radial-gradient(#f56161, #9198e5);
+}
+
+
+.hover_effect{
+    transition-duration: 500ms;
+    background-color: whitesmoke;
+}
+
+.hover_effect:hover{
+    transform: scale(1.02);
+    box-shadow: 0px 0px 2px 2px black;
+    border-radius: 5px;
+    transition-duration: 500ms;
+    background-color: rgb(189, 174, 174);
+}
+
+.custom_style{
+    overflow: scroll;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    scroll-margin-top: 50px;
+}
+
+.custom_effect:hover{
+    transform: scale(1.02);
+    box-shadow: 0px 0px 2px 2px black;
+    transition-duration: 500ms;
+    
+}

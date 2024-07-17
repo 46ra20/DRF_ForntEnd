@@ -16,7 +16,7 @@ const handleLogin = (e)=>{
             if(data?.error){
                 message_shoe(data?.error,'bg-danger')
             }
-            getUserDetails(data['user_id'])
+            getAuthDetails(data['user_id'])
             // window.location.reload()
             localStorage.setItem('token',data['token'])
             localStorage.setItem('user_id',data['user_id'])
@@ -78,6 +78,7 @@ const handleRegistration=(e)=>{
             
             const message='Please varify your email...'
             message_shoe(message,'bg-white')
+            document.getElementById('singup_form').reset();
         }
         else if(d=='Sorry'){
             const message ='Something wrong please try agin..'
@@ -93,6 +94,17 @@ const handleRegistration=(e)=>{
     })
 }
 
+
+const getAuthDetails= (id)=>{
+    fetch(`https://online-school-lr66.onrender.com/account/user_details/${id}/`)
+    .then(r=>r.json())
+    .then(d=>{
+      // console.log(d)
+      localStorage.setItem('user',JSON.stringify(d))
+      getUserDetails(id)
+    })
+    .catch(error=>console.log(error))
+}
 
 
 

@@ -2,7 +2,6 @@ const AllloadCourses = () =>{
     fetch('https://online-school-lr66.onrender.com/course/public/all/all/')
     .then(r=>r.json())
     .then(data=>{
-        console.log(data)
         viewCourses(data)
     })
     .catch(err=>console.log(err))
@@ -56,7 +55,7 @@ const CategoryView = ()=>{
     fetch('https://online-school-lr66.onrender.com/course/category/')
     .then(r=>r.json())
     .then(d=>{
-        console.log(d)
+        // console.log(d)
         const category_container = document.getElementById('category_container')
         d.forEach(element => {
             const li = document.createElement('li')

@@ -7,14 +7,14 @@ const loadMyCourse = () => {
         })
         .catch(err => console.log(err))
 }
-let count =0
+let count =0;
 const displayMyCourses = (courses) => {
     const table_container = document.getElementById('table_container')
     courses.forEach(course => {
         const tr = document.createElement('tr')
         tr.innerHTML = `
             <th scope="row">${++count}</th>
-                <td>${course?.title}</td>
+                <td><a class="fw-bold" style="text-decoration:none" href="detailsView.html?id=${course?.id}">${course?.title}</a></td>
                 <td>${course?.price}</td>
                 
                 <td class="d-flex gap-1 flex-wrap">

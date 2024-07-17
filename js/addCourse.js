@@ -34,7 +34,7 @@ const handleAddpost=(e)=>{
         console.log(v)
     }
 
-    fetch(`http://127.0.0.1:8000/course/authentic/${user}/`,{
+    fetch(`https://online-school-lr66.onrender.com/course/authentic/${user}/`,{
         method:'POST',
         // headers:{
         //     "Content-Type": "multipart/form-data"

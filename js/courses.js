@@ -1,9 +1,7 @@
-
 const loadCourses = () =>{
     fetch('https://online-school-lr66.onrender.com/course/public/all/home/')
     .then(r=>r.json())
     .then(data=>{
-        console.log(data)
         viewCourses(data)
     })
     .catch(err=>console.log(err))
@@ -48,5 +46,44 @@ const viewCourses=(courses)=>{
     });
 }
 
+const handleShowReview= ()=>{
+    const comment_block = document.getElementById('comment_block')
+    fetch(`https://online-school-lr66.onrender.com/course/review/all/`)
+    .then(r=>r.json())
+    .then(d=>{
+        if(d.data.length>0){
+            console.log(d.data)
+            showReviews(d.data)
+        }
+    })
+    .catch(err=>console.log(err))
+}
 
+
+const showReviews = (reviews)=>{
+    const review_container = document.getElementById('review_container')
+    if(reviews.length >0){
+        reviews.forEach(element => {
+            const div = document.createElement('div')
+            div.classList.add('col-lg-1','col-md-2','col-sm-3','mb-2')
+            div.innerHTML=`
+            <div class="border rounded shadow p-2 text-center hover_effect">
+                <img src="https://online-school-lr66.onrender.com/${element.image}/" class="rounded-circle" style="height:32px;width:32px">
+                <small class="m-0 my-1 d-block">(${showStar(element.rating)})</small>
+                <p class="m-0 p-0">"${element.review}"</p>
+            </div>
+            `
+            review_container.append(div)
+        });
+    }
+}
+
+
+const showStar=(star)=>{
+    let s = ''
+    for(let i=0;i<star;i++) s+=`<i class="fa-solid fa-star" style="color: #FFD43B;"></i>`
+    return s
+}
+
+handleShowReview()
 loadCourses()

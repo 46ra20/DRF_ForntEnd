@@ -1,15 +1,20 @@
+let c = 0;
 const navBar =()=>{
     const token = localStorage.getItem('token')
     const user_id = localStorage.getItem('user_id')
     
     let user={}
-    if(user_id && token){
+    if(user_id && token && c==0){
+      c++;
       getUserDetails(user_id)
-        user  = JSON.parse(localStorage.getItem('user'))
+    }
+    if(user_id && token){
+      user  = JSON.parse(localStorage.getItem('user'))
     }
     
-
     const navContainer = document.getElementById('navContainer')
+    navContainer.innerHTML=''
+
     navContainer.innerHTML=`
     <nav class="navbar navbar-expand-lg bg-dark ">
       <div class="container-fluid col-11 mx-auto text-white" style="color: white;">
@@ -41,7 +46,7 @@ const navBar =()=>{
                     <li class="nav-item dropdown">
                     <img src="https://online-school-lr66.onrender.com/${user.image}" class="rounded-circle shadow dropdown-toggle"style="height: 30px; width: 30px;" alt="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <ul class="dropdown-menu dropdown-menu-end">
-                      <li><a class="dropdown-item" href="#">Profile</a></li>
+                      <li><a class="dropdown-item" href="profile.html">Profile</a></li>
                       ${
                         user?.account_type=='TEACHER'?
                         `
@@ -49,7 +54,7 @@ const navBar =()=>{
                         `
                         :
                         `
-                        <li><a class="dropdown-item" href="#">My Learing</a></li>
+                        <li><a class="dropdown-item" href="myLearing.html">My Learing</a></li>
                         
                         `
                       }
@@ -81,27 +86,32 @@ const footerLoader=()=>{
   const footer_continer = document.getElementById('footer_continer')
   footer_continer.innerHTML=`
   <div class="justify-content-around align-items-center flex-sm-column flex-lg-row d-lg-flex">
-      <p class="fw-bold text-white">
-        All right reserved by JSRN School
-      </p>
+      <div class="d-flex align-items-center flex-column">
+        <img src="./image/JSRN.png" class="rounded-circle mb-3" style="height:150px;width:150px"/>
+        <p class="fw-bold text-white">
+          All right reserved by JSRN School
+        </p>
+        <p><small class="text-white">Copyright © 2024 JSRN School</small></p>
+      </div>
       <div class="">
-        <p class="fw-bold text-white">Our Service</p>
-        <ul class="text-white">
-          <li><a class="text-white" href="">Option 1</a> </li>
-          <li><a class="text-white" href="">Option 2</a> </li>
-          <li><a class="text-white" href="">Option 3</a> </li>
-          <li><a class="text-white" href="">Option 4</a> </li>
-          <li><a class="text-white" href="">Option 5</a> </li>
+        <p class="fw-bold text-white text-center border-bottom">Our Service</p>
+        <ul class="text-white nav flex-column align-items-center">
+          <li><a class="text-white mb-2 link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="">Home Teaching</a> </li>
+          <li><a class="text-white mb-2 link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="">Private Tutor</a> </li>
+          <li><a class="text-white mb-2 link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="">Online Tutor</a> </li>
+          <li><a class="text-white mb-2 link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="">Online Service</a> </li>
+          <li><a class="text-white mb-2 link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="">Online Class</a> </li>
         </ul>
       </div>
       <div class="">
-        <p class="fw-bold text-white">Our Service</p>
-        <ul class="text-white">
-          <li><a class="text-white" href="">Option 1</a> </li>
-          <li><a class="text-white" href="">Option 2</a> </li>
-          <li><a class="text-white" href="">Option 3</a> </li>
-          <li><a class="text-white" href="">Option 4</a> </li>
-          <li><a class="text-white" href="">Option 5</a> </li>
+        <p class="fw-bold text-white text-center border-bottom">Useful Links</p>
+        <ul class="text-white nav flex-column align-items-center">
+          <li><a class="text-white mb-2 link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover " href="">Refund policy</a> </li>
+          <li><a class="text-white mb-2 link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="">Terms and Conditions</a> </li>
+          <li><a class="text-white mb-2 link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="">Privacy Policy</a> </li>
+          <li><a class="text-white mb-2 link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="">App Privacy Policy</a> </li>
+          <li><a class="text-white mb-2 link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="">About us</a> </li>
+          <li><a class="text-white mb-2 link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="">Success Story</a> </li>
         </ul>
       </div>
     </div>
@@ -116,6 +126,8 @@ const getUserDetails=(id)=>{
     .then(d=>{
       // console.log(d)
       localStorage.setItem('user',JSON.stringify(d))
+      navBar()
+
     })
     .catch(error=>console.log(error))
 }
@@ -131,23 +143,12 @@ const handleLogout = ()=>{
           window.location.href='index.html'
           localStorage.clear()
       }
-      console.log(d)}
+      console.log(d)
+    }
   )
   .catch(err=>console.log(err))
 
 }
-
-const handelLoadedData = ()=>{
-  const param = new URLSearchParams(window.location.search).get('reload');
-  if(param==0){
-    window.location.href='index.html?reload=1';
-    window.location.reload();
-  }
-
-  // window.alert('Reload agin....');
-}
-
-handelLoadedData()
 
 
 footerLoader()
