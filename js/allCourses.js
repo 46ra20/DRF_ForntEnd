@@ -1,8 +1,11 @@
-const AllloadCourses = () =>{
-    fetch('http://127.0.0.1:8000/course/public_all/all/')
+const AllloadCourses = (link) =>{
+    fetch(link)
     .then(r=>r.json())
     .then(data=>{
-        viewCourses(data)
+        console.log(data)
+
+        viewCourses(data.results)
+        handlePagination(data.next,data.previous,data.count)
     })
     .catch(err=>console.log(err))
 }
@@ -27,7 +30,7 @@ const viewCourses=(courses)=>{
         `<div class='m-2 cardDegin border bg-white'>
             <img src="
             ${course['image']?
-                `https://online-school-lr66.onrender.com${course.image}`
+                `http://127.0.0.1:8000${course.image}`
                 :
                 './image/dummy_image_for_book.png'
             
@@ -52,10 +55,10 @@ const viewCourses=(courses)=>{
 }
 
 const CategoryView = ()=>{
-    fetch('https://online-school-lr66.onrender.com/course/category/')
+    fetch('http://127.0.0.1:8000/course/category/')
     .then(r=>r.json())
     .then(d=>{
-        // console.log(d)
+        console.log(d)
         const category_container = document.getElementById('category_container')
         d.forEach(element => {
             const li = document.createElement('li')
@@ -69,7 +72,7 @@ const CategoryView = ()=>{
     .catch(err=>console.log(err))
 }
 const handleFilter=(id)=>{
-    fetch(`https://online-school-lr66.onrender.com/course/get_by_dep/${id}/`)
+    fetch(`http://127.0.0.1:8000/course/get_by_dep/${id}/`)
     .then(r=>r.json())
     .then(d=>{
         viewCourses(d)
@@ -78,5 +81,43 @@ const handleFilter=(id)=>{
 
 }
 
+
+const handlePagination=(next,previous,count)=>{
+    console.log(next,previous,count)
+    const page_pagination = document.getElementById('page_pagination')
+    let pageNo = parseInt(count/9)
+    if(count%5 !=0 ){
+        pageNo+=1
+    }
+
+    page_pagination.innerHTML=`
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+              <li class="page-item" ${previous?'':'disable'}>
+                <button class="page-link ${previous?'':'disabled'}" onclick="AllloadCourses('${previous}')" aria-label="Previous" ${previous?'':'disabled'}>
+                  <span aria-hidden="true">&laquo;</span>
+                </button>
+              </li>
+              <div class="d-flex" id="load_page_no"></div>
+              <li class="page-item">
+                <button class="page-link ${next?'':'disabled'}" onclick="AllloadCourses('${next}')" aria-label="Next" ${next?'':'disabled'}>
+                  <span aria-hidden="true">&raquo;</span>
+                </button>
+              </li>
+            </ul>
+        </nav>
+    `
+    function Test(){
+        const load_page_no = document.getElementById('load_page_no')
+        for(let i=1;i<=pageNo;i++){
+            const li = document.createElement('li')
+            li.classList.add('page-item')
+            li.innerHTML=`<button class="page-link" style="border-radius: 0px;" onclick="AllloadCourses('http://127.0.0.1:8000/course/public_all/all/?page_no=${i}')">${i}</button>`
+            load_page_no.appendChild(li)
+        }
+    }
+    Test()
+}
+// handlePagination()
 CategoryView()
-AllloadCourses()
+AllloadCourses('http://127.0.0.1:8000/course/public_all/all/')

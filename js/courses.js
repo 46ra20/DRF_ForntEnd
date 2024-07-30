@@ -1,5 +1,5 @@
 const loadCourses = () =>{
-    fetch('https://online-school-lr66.onrender.com/course/public/all/home/')
+    fetch('https://online-school-lr66.onrender.com/course/public_all/home/')
     .then(r=>r.json())
     .then(data=>{
         viewCourses(data)
